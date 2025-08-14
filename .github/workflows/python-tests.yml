@@ -24,9 +24,12 @@ jobs:
 
     - name: Install Allure CLI
       run: |
-        sudo apt-add-repository ppa:qameta/allure -y
-        sudo apt-get update
-        sudo apt-get install allure -y
+        sudo apt update
+        sudo apt install -y openjdk-11-jdk wget unzip
+        wget https://github.com/allure-framework/allure2/releases/download/2.25.2/allure-2.25.2.zip -O allure.zip
+        unzip allure.zip -d /opt/
+        rm allure.zip
+        sudo ln -s /opt/allure-2.25.2/bin/allure /usr/bin/allure
 
     - name: Run tests with Allure
       run: |
